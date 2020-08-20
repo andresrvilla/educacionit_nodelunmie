@@ -1,0 +1,9 @@
+Ejercicio:
+
+Pagina con:
+HTML (Por ej un formulario que peuda hacer post)
+CSS (Estilos del formulario
+JS (Cliente)
+	Por ejemplo validar que no se envien datos vacios al servidor
+
+Node Responda concatenando los datos del formulario

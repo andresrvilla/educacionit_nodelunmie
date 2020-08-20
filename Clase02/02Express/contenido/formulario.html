@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenidos a mi sitio web</h1>
-    <p>Hola, les doy la bienvenida al sitio web</p>
-    <img src="image-1.jpg" />
+    <form method="post" action="/formulario?accion=guardar">
+        Nombre: <input type="text" name="nombre" /><br>
+        <input type="submit" value="Enviar" />
+    </form>
 </body>
 </html>
