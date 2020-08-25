@@ -1,0 +1,39 @@
+<h1>{{ tituloPagina }}</h1>
+{{#if nombreUsuario }}
+    Hola {{ nombreUsuario }}, bienvenido
+{{else}}
+    No tiene nombre de usuario<br>
+{{/if}}
+
+{{#unless nombreUsuario }}
+    <b>Inicie sesion o registrese</b>
+    <i> para ingresar a la pagina</i><br>
+{{/unless}}
+
+Usuarios existentes: <br />
+
+<ul>
+    {{#each usuarios}}
+        <li>{{ this }}</li>
+    {{/each}}
+</ul>
+
+Personas existentes: <br />
+
+<ul>
+    {{#each personas}}
+        <li>
+            
+            {{ apellido }} {{ nombre }}
+            {{#each notas }}
+             {{ this }}
+            {{/each}}
+        </li>
+    {{/each}} <!-- end each persona -->
+</ul>
+
+<br/ >
+
+{{> firma }}
+
+{{ fin }}
