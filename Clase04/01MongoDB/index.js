@@ -18,9 +18,14 @@ app.get("/",(req,res) => {
     res.render("index");
 })
 
-app.get("/creaalumno",(req,res) => {
+app.route("/creaalumno")
+.get((req,res) => {
     res.render("formAlumno");
 })
+.post((req,res) => {
+    var prueba = "Llego "+req.body.nombre + " " + req.body.apellido + " " +req.body.edad;
+    res.send(prueba);
+});
 
 app.listen(3000,() => {
     console.log("Iniciado en el puerto 3000")
