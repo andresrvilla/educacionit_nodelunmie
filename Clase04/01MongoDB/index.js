@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+const alumno = require("./alumno");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,7 +16,13 @@ app.set("view engine", "hbs");
 
 
 app.get("/",(req,res) => {
-    res.render("index");
+    alumno.Todos((err,datos) => {
+        console.log(datos);
+        res.render("index", {
+            "Datos": datos
+        })
+    })
+    
 })
 
 app.route("/creaalumno")
@@ -23,8 +30,15 @@ app.route("/creaalumno")
     res.render("formAlumno");
 })
 .post((req,res) => {
-    var prueba = "Llego "+req.body.nombre + " " + req.body.apellido + " " +req.body.edad;
-    res.send(prueba);
+    alumno.Guardar(req.body.nombre,
+        req.body.apellido, 
+        parseInt(req.body.edad), (err) => {
+            if(err){
+                res.send("Hubo un error: "+err);
+            }else{
+                res.redirect("/");
+            }
+        })
 });
 
 app.listen(3000,() => {
