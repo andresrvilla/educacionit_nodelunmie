@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each Alumnos}}
+            <tr>
+                <td>{{Apellido}}</td>
+                <td>{{Nombre}}</td>
+                <td>
+                    <a href="/editarAlumno?id={{_id}}">Editar</a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
