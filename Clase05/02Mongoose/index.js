@@ -3,6 +3,7 @@ const app = express();
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const alumno = require("./alumno");
+const instructor = require("./instructor");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -79,6 +80,45 @@ app.route("/editarAlumno")
         (err, datos ) => {
             res.redirect("/");
         })
+})
+
+app.route("/crearinstructor")
+.get((req,res) => {
+    res.render("formInstructor");
+})
+.post((req,res) => {
+    //req.body.nombre,
+    //req.body.apellido, 
+    //parseInt(req.body.edad)
+    instructor.Crear(req.body.nombre, 
+        req.body.apellido, 
+        req.body.cantidadCursos,
+        (err,datos) => {
+            if(err){
+                res.send(err);
+            }else{
+                res.redirect("/");
+            }
+        })
+})
+
+app.get("/listarinstructores", (req,res) => {
+    instructor.Todos((err,datos) => {
+        console.log(datos);
+        res.render("listadoInstructores", {
+            Instructores: datos
+        });
+    })
+})
+
+app.route("/editarInstructor")
+.get((req,res) => {
+    var id = req.query.id;
+    instructor.UnInstructor(id,(err,datos) => {
+        res.render("formInstructor", {
+            Instructor: datos
+        })
+    })
 })
 
 app.listen(3000,() => {
