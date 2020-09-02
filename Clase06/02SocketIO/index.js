@@ -147,6 +147,9 @@ let io = require("socket.io");
 let ioServer = io(server);
 
 ioServer.on("connection", (socket) => {
+    socket.emit("conn", {
+        msg: "Conectado con el servidor"
+    } );
     console.log("Se conecto un cliente");
 })
 

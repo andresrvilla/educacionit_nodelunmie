@@ -4,4 +4,8 @@
 
 <script>
     var socket = io();
+    socket.on("conn", function(msg){
+        console.log("Recibido ");
+        console.log(msg);
+    })
 </script>
