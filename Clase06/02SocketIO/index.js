@@ -146,10 +146,24 @@ let server = app.listen(3000,() => {
 let io = require("socket.io");
 let ioServer = io(server);
 
+let clientesConectados = [];
+
 ioServer.on("connection", (socket) => {
+    console.log("Se conecto un cliente");
+
+    clientesConectados.push(socket);
+
+    socket.on("disconnect",function(){
+        //quitar de clientes conectados;
+    })
+
     socket.emit("conn", {
         msg: "Conectado con el servidor"
     } );
-    console.log("Se conecto un cliente");
+    
+    socket.on("chat message" ,(msg) => {
+        console.log("Llego el mensaje "+msg);
+        ioServer.emit("chat message", msg);
+    })
 })
 
